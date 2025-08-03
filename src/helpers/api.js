@@ -1,8 +1,9 @@
 import axios from 'axios'
 
 // set backend (Server) URL (endpoint)
-const backendUrl = "https://vbcw.onrender.com/vocabs/"
-const authUrl = "https://vbcw.onrender.com/api/auth/"
+const BASE_URL = "https://vbcw.onrender.com";
+const backendUrl = `${BASE_URL}/vocabs/`;
+const authUrl = `${BASE_URL}/api/auth/`;
 
 // Vocab API calls
 export const viewAllWords = async () => {
@@ -93,8 +94,8 @@ export const updatedUser = async (id, updatedUser) => {
 }
 
 export async function getAllUsers() {
-  const token = localStorage.getItem('token'); // take token from local storage
-  return await axios.get('/api/users/', {
+  const token = localStorage.getItem('token');
+  return await axios.get(`${BASE_URL}/api/users/`, {  
     headers: {
       Authorization: `Bearer ${token}`
     }
