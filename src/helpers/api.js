@@ -18,7 +18,11 @@ export const viewAllWords = async () => {
 
 export const deleteWords = async (id) => { 
     try {
-        const response = await axios.delete(backendUrl + id);
+        const token = localStorage.getItem('token')
+        const response = await axios.delete(backendUrl + id {
+            header: {
+                Authorization:`Bearer ${token}`
+            }
         return response.data;
     } catch (err) {
         console.error(err);
@@ -38,7 +42,12 @@ export const viewByVocabById = async (id) => {
 
 export const updateVocab = async (id, updatedVocab) => {
     try {
-        const response = await axios.put(backendUrl + id, updatedVocab);
+        const token = localStorage.getItem('token');
+        const response = await axios.put(backendUrl + id, updatedVocab {
+          headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         return response.data;
     } catch (err) {
         console.error(err);
@@ -75,7 +84,10 @@ export const loginUser = async (credentials) => {
 
 export const createVocab = async (newVocab) => {
     try {
-        const response = await axios.post(backendUrl, newVocab);
+        const token = localStorage.getItem('token');
+        const response = await axios.post(backendUrl, newVocab {
+        Authorization :  `Bearer ${token}`        
+        }
         return response.data;
     } catch (err) {
         console.error('Create Vocab API Error:', err);
